@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f1f3f8;
+    height: 100vh;
+}
+
+h1, i, b, span {
+    margin: 0.75rem;
+    display: block;
+}
+
+header {
+    padding: 0.1rem;
+    border-bottom: 2px solid blueviolet;
+    background-color: #d6e0f0;
+    text-align: left;
+    color: #333;
+    height: 75px;
+    transition: all 500ms ease-in-out;
+}
+
+main {
+    display: flex;
+    height: calc(100vh - 125px);
+}
+
+.books {
+    display: flex;
+    justify-content: left;
+    align-items: baseline;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
+    overflow-y: auto;
+}
+
+.book {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 0.5rem;
+    flex: 0 1 auto;
+    width: 300px;
+    height: 300px;
+    border: 2px solid black;
+    box-shadow: 1px 1px 5px 1px #0075;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    background-color: #e0e2e7;
+}
+
+
+.status, .remove {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 2px groove white;
+    margin: 0.25rem;
+    color: white;
+    background-color: #D55;
+}
+
+.status:hover {
+    border: 2px solid blue;
+}
+
+.read {
+    background-color: #1212FF;
+}
+
+.read:hover{
+    border: 2px solid #D55;
+}
+
+.remove {
+    background-color: red;
+    border: none;
+}
+.add-screen {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 15vw;
+    color: white;
+    background-color: #1212FF;
+    font-size: 1rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form input {
+    border: none;
+    background: transparent;
+    border-bottom: 2px solid white;
+    margin: 1rem 0;
+    color: white;
+}
+
+form input:focus-visible {
+    outline: none;
+    border-bottom: 2px solid #5f5;
+}
+
+.checkbox {
+    width: 25px;
+    height: 25px;
+}
+
+#submit {
+    border: 1px groove white;
+    color: white;
+    height: 3rem;
+    border-radius: 3rem;
+}
+
+#submit:hover {
+    background-color: white;
+    color: black;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0%;
+    height: 50px;
+    width: 100%;
+    background-color: #d6e0f0;
+    border-top: 2px solid blueviolet;
+}
+
+svg {
+    transform: scale(0.75);
+    transition: transform .15s cubic-bezier(.17,.67,.29,2.71) 0s;
+}
+
+svg:hover {
+    transform: scale(0.9);
+    filter: invert(41%) sepia(94%) saturate(1636%) hue-rotate(129deg) brightness(92%) contrast(97%);
+}
