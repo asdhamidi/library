@@ -1,5 +1,4 @@
 // Data Structures.
-
 class Book
 {
     constructor(title, author, pages, read) {
@@ -31,6 +30,11 @@ class Lib
         return this.books;
     }
 
+    lastBook()
+    {
+        return this.books[this.libSize() - 1];
+    }
+
     libSize()
     {
         return this.books.length;
@@ -46,12 +50,7 @@ class Lib
 let Library = new Lib();
 
 let submit = document.getElementById("submit");
-let books = document.querySelector(".books");
-let remove = document.querySelectorAll(".remove");
-let readStatus = document.querySelectorAll(".status");
-
-// Event Listeners
-submit.addEventListener("click", submitDetails);
+let books = document.querySelector(".books"); // Element which holds all the book cards
 
 // Function to insert new book details
 function submitDetails()
@@ -63,7 +62,6 @@ function submitDetails()
     
         addNewBook();
         clearForm();
-        updateButtons();
     }
 }
 
@@ -72,9 +70,8 @@ function removeBook(e)
 {
     let btn = e.target;
     console.log(btn.parentNode);
-    books.removeChild(btn.parentNode);
+    books.removeChild(btn.parentNode.parentNode);
     Library.remove(btn.parentNode.querySelector("h1").textContent);
-    updateButtons();
 }
 
 // Function to change read status of a book
@@ -86,7 +83,6 @@ function readStatusChange(e)
     btn.textContent = "Unread";
     else
     btn.textContent = "Read";
-    updateButtons();
 }
 
 // Function to get data from the form
@@ -99,18 +95,18 @@ function getDetails()
     return new Book(book, author, pages, read);
 }
 
-// Updates
+// Updates the Library view by adding a new book element
 function addNewBook()
 {
-    let booklist = Library.bookList();
-    books.appendChild(createBookNode(booklist[booklist.length - 1]));
+    books.appendChild(createBookNode(Library.lastBook()));
 }
 
+// Creates a new Book element to be added to the main
 function createBookNode(book)
 {
     let nbook = document.createElement("div");
     nbook.classList.add("book");
-
+    
     let title = document.createElement("h1");
     title.textContent = `${book.title}`;
     nbook.appendChild(title);
@@ -118,10 +114,13 @@ function createBookNode(book)
     let author = document.createElement("i");
     author.textContent = `By ${book.author}`;
     nbook.appendChild(author);
-
+    
     let pages = document.createElement("b");
     pages.textContent = `Pages: ${book.pages}`;
     nbook.appendChild(pages);
+    
+    let buttonbox = document.createElement("div");
+    buttonbox.classList.add("buttons");
 
     let read = document.createElement("button");
     read.classList.add("status");
@@ -133,18 +132,20 @@ function createBookNode(book)
     else
     read.textContent = `Unread`;
     read.onclick = readStatusChange;
-    nbook.appendChild(read);
+    buttonbox.appendChild(read);
     
     let remove = document.createElement("button");
     remove.classList.add("remove");
     remove.textContent = `Remove`;
     remove.onclick = removeBook;
-    nbook.appendChild(remove);
+    buttonbox.appendChild(remove);
     
+    nbook.appendChild(buttonbox);
 
     return nbook;
 }
 
+// Clears the form after input
 function clearForm() {
     document.getElementById("book").value = "";
     document.getElementById("author").value = "";
@@ -152,11 +153,7 @@ function clearForm() {
     document.getElementById("isRead").checked = false;
 }
 
-function updateButtons () {
-    remove = document.querySelectorAll(".remove");
-    readStatus = document.querySelectorAll(".status");
-}
-
+// Failsafe function to check if fields are not empty and pages variable is actually a number.
 function failsafe(book)
 {
     if(book.title == "" || book.author == "" || book.pages == "1")

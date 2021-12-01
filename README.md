@@ -1,4 +1,4 @@
-# Etch a Sketch
+# Library
 Library web app created with HTML, CSS and JS.
 (Made as a part of The Odin Project.)
 
