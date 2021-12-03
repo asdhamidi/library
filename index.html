@@ -22,8 +22,13 @@
                     <input type="text" id="author" name="author" value="" required>
                     <label for="pages">No. Of Pages:</label>
                     <input type="text" id="pages" name="pages" value="" required>
-                    <input class="checkbox" type="checkbox" id="isRead">
-                    <label for="is-read">Have you read it?</label><br>
+                    <div class="read-status">
+                        <span>Unread</span>
+                        <input type="checkbox" id="isRead" class="checkbox">
+                        <label for="isRead" class="toggle">
+                        </label>
+                        <span>Read</span>
+                    </div>
                     <input type="submit" id="submit" value="Submit" onclick="submitDetails()">
                     </form>           
             </div>

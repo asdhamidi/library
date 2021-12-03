@@ -107,13 +107,17 @@ function createBookNode(book)
     let nbook = document.createElement("div");
     nbook.classList.add("book");
     
+    let info = document.createElement("div");
+
     let title = document.createElement("h1");
     title.textContent = `${book.title}`;
-    nbook.appendChild(title);
-    
+
     let author = document.createElement("i");
     author.textContent = `By ${book.author}`;
-    nbook.appendChild(author);
+    
+    info.appendChild(title);
+    info.appendChild(author);
+    nbook.appendChild(info);
     
     let pages = document.createElement("b");
     pages.textContent = `Pages: ${book.pages}`;
@@ -130,16 +134,16 @@ function createBookNode(book)
         read.classList.add("read");
     }
     else
-    read.textContent = `Unread`;
+        read.textContent = `Unread`;
     read.onclick = readStatusChange;
-    buttonbox.appendChild(read);
     
     let remove = document.createElement("button");
     remove.classList.add("remove");
     remove.textContent = `Remove`;
     remove.onclick = removeBook;
-    buttonbox.appendChild(remove);
     
+    buttonbox.appendChild(read);
+    buttonbox.appendChild(remove);
     nbook.appendChild(buttonbox);
 
     return nbook;
@@ -150,7 +154,6 @@ function clearForm() {
     document.getElementById("book").value = "";
     document.getElementById("author").value = "";
     document.getElementById("pages").value = "";
-    document.getElementById("isRead").checked = false;
 }
 
 // Failsafe function to check if fields are not empty and pages variable is actually a number.
